@@ -1,107 +1,62 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f0f0f;
-    color: white;
+  margin: 0;
+  font-family: Arial;
+  background: #0f0f0f;
+  color: white;
 }
 
-/* HEADER */
 .header {
-    padding: 15px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    background: #1c1c1c;
-    border-bottom: 2px solid red;
+  background: #e50914;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-/* MAIN LAYOUT */
 .container {
-    display: flex;
-    height: calc(100vh - 60px);
+  display: flex;
+  height: 90vh;
 }
 
-/* SIDEBAR */
 .sidebar {
-    width: 320px;
-    background: #141414;
-    overflow-y: auto;
-    padding: 10px;
+  width: 30%;
+  background: #1a1a1a;
+  padding: 10px;
+  overflow-y: auto;
 }
 
-/* CHANNEL BUTTONS */
 .sidebar button {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 8px;
-    background: #222;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: 0.2s ease;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 6px;
 }
 
 .sidebar button:hover {
-    background: red;
-    transform: scale(1.02);
+  background: #e50914;
 }
 
-/* PLAYER SECTION */
 .player {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: black;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* VIDEO */
 video {
-    width: 90%;
-    max-height: 70vh;
-    border-radius: 12px;
-    background: black;
+  width: 95%;
+  height: 75%;
+  background: black;
+  border-radius: 10px;
 }
 
-/* STATUS TEXT */
 #status {
-    margin-top: 10px;
-    color: #aaa;
-    font-size: 14px;
-}
-
-/* SCROLLBAR STYLE */
-.sidebar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background: red;
-    border-radius: 10px;
-}
-
-/* MOBILE RESPONSIVE */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        display: flex;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
-    .sidebar button {
-        min-width: 160px;
-        margin-right: 8px;
-    }
-
-    video {
-        width: 95%;
-    }
+  margin-top: 10px;
+  color: #aaa;
 }
