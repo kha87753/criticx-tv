@@ -6,13 +6,10 @@ function play(url) {
 
     status.innerText = "Loading...";
 
-    // old stream cleanup
     if (hls) {
         hls.destroy();
-        hls = null;
     }
 
-    // HLS support check
     if (Hls.isSupported()) {
 
         hls = new Hls();
@@ -22,25 +19,23 @@ function play(url) {
 
         hls.on(Hls.Events.MANIFEST_PARSED, function () {
             video.play();
-            status.innerText = "Now Playing";
+            status.innerText = "Live Playing ✔";
         });
 
-        hls.on(Hls.Events.ERROR, function (event, data) {
-            console.log("HLS Error:", data);
-            status.innerText = "Stream Error - Try Another Channel";
+        hls.on(Hls.Events.ERROR, function () {
+            status.innerText = "Stream Error ❌";
         });
 
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
 
-        // Safari support
         video.src = url;
 
         video.addEventListener("loadedmetadata", function () {
             video.play();
-            status.innerText = "Now Playing";
+            status.innerText = "Live Playing ✔";
         });
 
     } else {
-        status.innerText = "HLS not supported in this browser";
+        status.innerText = "HLS Not Supported ❌";
     }
 }
