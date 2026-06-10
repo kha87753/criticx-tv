@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f0f0f;
+  color: white;
+}
+
+.header {
+  background: #e50914;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  height: 90vh;
+}
+
+.sidebar {
+  width: 30%;
+  background: #1a1a1a;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 6px;
+}
+
+.sidebar button:hover {
+  background: #e50914;
+}
+
+.player {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+video {
+  width: 95%;
+  height: 75%;
+  background: black;
+  border-radius: 10px;
+}
+
+#status {
+  margin-top: 10px;
+  color: #aaa;
+}

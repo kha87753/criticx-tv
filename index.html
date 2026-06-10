@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CriticX TV</title>
+
+    <link rel="stylesheet" href="criticxtv.css">
+</head>
+
+<body>
+
+<div class="header">
+    📺 CriticX TV Live
+</div>
+
+<div class="container">
+
+    <div class="sidebar">
+
+        <button onclick="play('https://tvsen6.aynaott.com/btvhd/index.m3u8')">
+            BTV
+        </button>
+
+        <button onclick="play('https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/1709.m3u8')">
+            BTV HD
+        </button>
+
+        <button onclick="play('https://tvsen7.aynaott.com/tsports-hd/index.m3u8')">
+            T Sports
+        </button>
+
+        <button onclick="play('https://tvsen7.aynaott.com/tsportsfhd/index.m3u8')">
+            T Sports 2
+        </button>
+
+        <button onclick="play('https://tvsen6.aynaott.com/somoytv/index.m3u8')">
+            Somoy News
+        </button>
+
+        <button onclick="play('https://bozztv.com/rongo/rongo-somoy/index.m3u8')">
+            Somoy News HD
+
+        </button>
+
+        <button onclick="play('https://owrcovcrpy.gpcdn.net/bpk-tv/1711/output/index.m3u8')">
+            Dipto TV HD
+        </button>
+
+        <button onclick="play('https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8')">
+            Masranga TV HD
+        </button>
+
+        <button onclick="play('https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/greentv.stream/live-orgin/greentv.stream/playlist.m3u8')">
+            Green Tv
+        </button>
+
+        <button onclick="play('https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8')">
+            Jamuna News
+
+        </button>
+
+        <button onclick="play('https://live-bangla.akamaized.net/liveabr/pub-iobanglakp3sff/live_720p/chunks.m3u8')">
+            Enterten Bangla HD
+
+            <button onclick="play('https://live-bangla.akamaized.net/liveabr/pub-iobanglakp3sff/live_480p/chunks.m3u8')">
+                Enterten Bangla
+            </button>
+
+        </button>
+
+    </div>
+
+    <div class="player">
+        <video id="video" controls autoplay></video>
+        <p id="status">Select a channel</p>
+    </div>
+
+</div>
+
+<!-- HLS Support -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<!-- Your JS -->
+<script src="criticxtv.js"></script>
+
+</body>
+</html>
