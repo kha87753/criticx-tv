@@ -15,6 +15,24 @@ const websiteRef = doc(db, "website", "app");
 const analyticsRef = doc(db, "analytics", "counters");
 
 // =========================
+// Download Counter Formatter
+// =========================
+
+function formatDownloads(count) {
+  count = Number(count);
+
+  if (count >= 1000000) {
+    return (count / 1000000).toFixed(1).replace(".0", "") + "M+";
+  }
+
+  if (count >= 1000) {
+    return (count / 1000).toFixed(1).replace(".0", "") + "K+";
+  }
+
+  return count.toString();
+}
+
+// =========================
 // Load Website Information
 // =========================
 
@@ -38,8 +56,8 @@ async function loadWebsite() {
     document.getElementById("updated").textContent =
       data.updated;
 
-    document.getElementById("downloadBtn")
-      .dataset.apk = data.apkUrl;
+    document.getElementById("downloadBtn").dataset.apk =
+      data.apkUrl;
 
     document.getElementById("messengerBtn").href =
       data.messenger;
@@ -69,7 +87,7 @@ async function loadAnalytics() {
     const data = analyticsSnap.data();
 
     document.getElementById("downloadCount").textContent =
-      Number(data.downloads).toLocaleString() + "+";
+      formatDownloads(data.downloads);
 
   }
 
@@ -82,9 +100,7 @@ async function loadAnalytics() {
 async function addVisitor() {
 
   await updateDoc(analyticsRef, {
-
     visitors: increment(1)
-
   });
 
 }
@@ -96,17 +112,15 @@ async function addVisitor() {
 window.addDownload = async function () {
 
   await updateDoc(analyticsRef, {
-
     downloads: increment(1)
-
   });
 
 };
 
 // =========================
+// Initialize
+// =========================
 
 loadWebsite();
-
 loadAnalytics();
-
 addVisitor();
