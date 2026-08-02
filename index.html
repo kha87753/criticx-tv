@@ -1,132 +1,623 @@
-import { db } from "./firebase-config.js";
+<!DOCTYPE html>
+<html lang="en">
 
-import {
-  doc,
-  getDoc,
-  updateDoc,
-  increment
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+<head>
 
-// =========================
-// Firestore References
-// =========================
+    <meta charset="UTF-8">
 
-const websiteRef = doc(db, "website", "app");
-const analyticsRef = doc(db, "analytics", "counters");
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-// =========================
-// Download Counter Formatter
-// =========================
+    <title>CriticX TV | Official Download Center</title>
 
-function formatDownloads(count) {
+    <link rel="stylesheet" href="style.css">
 
-  count = Number(count);
+</head>
 
-  if (count >= 1000000) {
-    return (count / 1000000).toFixed(1).replace(".0", "") + "M+";
-  }
+<body>
 
-  if (count >= 1000) {
-    return (count / 1000).toFixed(1).replace(".0", "") + "K+";
-  }
+    <!-- ===========================
+         Hero Section
+    ============================ -->
 
-  return count.toString();
+    <section class="hero">
 
-}
+        <div class="container">
 
-// =========================
-// Load Website Information
-// =========================
+            <img src="assets/logo.png"
+                 alt="CriticX TV Logo"
+                 class="logo">
 
-async function loadWebsite() {
+            <span class="badge">
+                🌐 Official Website
+            </span>
 
-  const websiteSnap = await getDoc(websiteRef);
+            <h1 id="appName">
+                📺 CriticX TV
+            </h1>
 
-  if (websiteSnap.exists()) {
+            <p class="tagline"
+               id="description">
 
-    const data = websiteSnap.data();
+                CriticX TV brings your favorite
+                Live TV, Sports, Movies,
+                Entertainment and Breaking News
+                together in one place.
 
-    document.getElementById("appName").textContent =
-      data.appName;
+                Enjoy smooth, fast and
+                high-quality streaming
+                anytime, anywhere.
 
-    document.getElementById("description").textContent =
-      data.description;
+            </p>
 
-    document.getElementById("version").textContent =
-      data.version;
 
-    document.getElementById("updated").textContent =
-      data.updated;
 
-    document.getElementById("downloadBtn")
-      .dataset.apk = data.apkUrl;
+            <!-- Stats -->
 
-    document.getElementById("messengerBtn").href =
-      data.messenger;
+            <div class="stats">
 
-    document.getElementById("telegramBtn").href =
-      data.telegram;
+                <div class="card">
 
-    if (document.getElementById("latest")) {
-      document.getElementById("latest").textContent =
-        data.latest;
-    }
+                    <div class="icon">
 
-  }
+                        ⭐
 
-}
+                    </div>
 
-// =========================
-// Load Analytics
-// =========================
+                    <h2>
 
-async function loadAnalytics() {
+                        4.8
 
-  const analyticsSnap = await getDoc(analyticsRef);
+                    </h2>
 
-  if (analyticsSnap.exists()) {
+                    <p>
 
-    const data = analyticsSnap.data();
+                        Rating
 
-    document.getElementById("downloadCount").textContent =
-      formatDownloads(data.downloads);
+                    </p>
 
-  }
+                </div>
 
-}
 
-// =========================
-// Visitor Counter
-// =========================
 
-async function addVisitor() {
+                <div class="card">
 
-  await updateDoc(analyticsRef, {
+    <div class="icon">
+        📥
+    </div>
 
-    visitors: increment(1)
+    <h2 id="downloadCount">...</h2>
 
-  });
+    <p>
+        Downloads
+    </p>
 
-}
+</div>
 
-// =========================
-// Download Counter
-// =========================
 
-window.addDownload = async function () {
 
-  await updateDoc(analyticsRef, {
+                <div class="card">
 
-    downloads: increment(1)
+                    <div class="icon">
 
-  });
+                        🛡️
 
-};
+                    </div>
 
-// =========================
+                    <h2>
 
-loadWebsite();
+                        Safe
 
-loadAnalytics();
+                    </h2>
 
-addVisitor();
+                    <p>
+
+                        Verified
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Download Button -->
+
+            <a href="#"
+
+               id="downloadBtn"
+
+               class="download-btn">
+
+                📥 Download APK
+
+            </a>
+
+
+
+            <!-- Version -->
+
+            <div class="version-box">
+
+                <p>
+
+                    <b>Version :</b>
+
+                    <span id="version">
+
+                        1.0
+
+                    </span>
+
+                </p>
+
+                <p>
+
+                    <b>Size :</b>
+
+                    <span>
+
+                        52 MB
+
+                    </span>
+
+                </p>
+
+                <p>
+
+                    <b>Updated :</b>
+
+                    <span id="updated">
+
+                        July 2026
+
+                    </span>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- ===========================
+         Features
+    ============================ -->
+
+    <section class="features">
+
+        <div class="container">
+
+            <h2>
+
+                🔥 Features
+
+            </h2>
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+
+                    ⚽
+
+                    <h3>
+
+                        Live Sports
+
+                    </h3>
+
+                    <p>
+
+                        Football, Cricket &
+                        More.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    🎬
+
+                    <h3>
+
+                        Movies
+
+                    </h3>
+
+                    <p>
+
+                        Watch Popular Movie
+                        Channels.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    📺
+
+                    <h3>
+
+                        Live TV
+
+                    </h3>
+
+                    <p>
+
+                        100+ Live TV
+                        Channels.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    📰
+
+                    <h3>
+
+                        News
+
+                    </h3>
+
+                    <p>
+
+                        Breaking News
+                        Anytime.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    ⚡
+
+                    <h3>
+
+                        Fast Streaming
+
+                    </h3>
+
+                    <p>
+
+                        Buffer-Free
+                        Experience.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    📡
+
+                    <h3>
+
+                        HD Quality
+
+                    </h3>
+
+                    <p>
+
+                        Crystal Clear
+                        Streaming.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>    <!-- ===========================
+         App Screenshots
+    ============================ -->
+
+    <section class="screenshots">
+
+        <div class="container">
+
+            <h2>
+                📱 App Screenshots
+            </h2>
+
+            <div class="screen-list">
+
+                <img src="assets/screen1.jpg"
+                     alt="Screenshot 1">
+
+                <img src="assets/screen2.jpg"
+                     alt="Screenshot 2">
+
+                <img src="assets/screen3.jpg"
+                     alt="Screenshot 3">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- ===========================
+         Why Choose CriticX TV
+    ============================ -->
+
+    <section class="why">
+
+        <div class="container">
+
+            <h2>
+
+                ⭐ Why Choose CriticX TV?
+
+            </h2>
+
+            <ul>
+
+                <li>✔ 100+ Live TV Channels</li>
+
+                <li>✔ Live Sports Streaming</li>
+
+                <li>✔ Movies & Entertainment</li>
+
+                <li>✔ HD Streaming Experience</li>
+
+                <li>✔ Android TV Support</li>
+
+                <li>✔ Regular Updates</li>
+
+                <li>✔ Safe & Secure APK</li>
+
+                <li>✔ User Friendly Interface</li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- ===========================
+         Join Community
+    ============================ -->
+
+    <section class="community">
+
+        <div class="container">
+
+            <h2>
+
+                💬 Join Our Community
+
+            </h2>
+
+            <p class="community-text">
+
+                Get the latest updates,
+                new channels,
+                announcements,
+                and technical support
+                by joining our official community.
+
+            </p>
+
+
+
+            <a id="messengerBtn"
+
+               href="https://m.me/j/AbZlksWYYxeOmd2c/?send_source=gc%3Acopy_invite_link_t"
+
+               target="_blank"
+
+               class="messenger">
+
+                💬 Join Messenger Group
+
+            </a>
+
+
+
+            <a id="telegramBtn"
+
+               href="https://t.me/+6hda0WkWAYNiMWQ1"
+
+               target="_blank"
+
+               class="telegram">
+
+                ✈️ Join Telegram Group
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- ===========================
+         What's New
+    ============================ -->
+
+    <section class="whats-new">
+
+        <div class="container">
+
+            <h2>
+
+                🆕 What's New
+
+            </h2>
+
+            <div class="version-card">
+
+                <h3 id="latest">
+
+                    Initial Official Release
+
+                </h3>
+
+                <p>
+
+                    ✔ Improved Streaming Performance</p>
+
+                <p>
+
+                    ✔ Better Android TV Support</p>
+
+                <p>
+
+                    ✔ UI Improvements</p>
+
+                <p>
+
+                    ✔ Performance Optimizations</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- ===========================
+         Advertisement
+    ============================ -->
+
+    <section class="ads">
+
+        <div class="container">
+
+            <h2>
+
+                📢 Sponsored
+
+            </h2>
+
+            <div id="bannerAd"
+
+                 class="banner-ad">
+
+                Advertisement Space
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <!-- ===========================
+         Footer
+    ============================ -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+
+                © 2026 CriticX TV. All Rights Reserved.
+
+            </p>
+
+            <div class="footer-links">
+
+                <a href="pages/privacy.html">
+
+                    Privacy Policy
+
+                </a>
+
+                <span>|</span>
+
+                <a href="pages/terms.html">
+
+                    Terms of Service
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>    <!-- ===========================
+         Download Popup
+    ============================ -->
+
+    <div id="downloadPopup" class="popup">
+
+        <div class="popup-box">
+
+            <h2>
+                📥 Preparing Download...
+            </h2>
+
+            <p>
+                Please wait while we prepare your download.
+            </p>
+
+            <h1 id="countdown">3</h1>
+
+            <div class="loader"></div>
+
+            <p class="popup-note">
+                Your download will start automatically...
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- ===========================
+         Firebase
+    ============================ -->
+
+    <script type="module" src="firebase/firebase-service.js"></script>
+
+    <!-- Main Script -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
