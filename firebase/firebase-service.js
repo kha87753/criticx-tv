@@ -15,7 +15,7 @@ const websiteRef = doc(db, "website", "app");
 const analyticsRef = doc(db, "analytics", "counters");
 
 // =========================
-// Formatter
+// Download Formatter
 // =========================
 
 function formatDownloads(count) {
@@ -35,7 +35,7 @@ function formatDownloads(count) {
 }
 
 // =========================
-// Animated Counter
+// Premium Animated Counter
 // =========================
 
 function animateDownloads(target) {
@@ -44,19 +44,15 @@ function animateDownloads(target) {
 
   target = Number(target);
 
-  // Start from 8% - 15% lower
-  const randomPercent = 0.08 + Math.random() * 0.07;
+  // Start only 200-250 downloads lower
+  const distance = 200 + Math.floor(Math.random() * 51);
 
-  let current = Math.max(
-    Math.floor(target * (1 - randomPercent)),
-    0
-  );
+  let start = Math.max(target - distance, 0);
 
-  const duration = 900; // milliseconds
-
+  const duration = 900;
   const startTime = performance.now();
 
-  function update(now) {
+  function animate(now) {
 
     const progress = Math.min(
       (now - startTime) / duration,
@@ -64,14 +60,14 @@ function animateDownloads(target) {
     );
 
     const value = Math.floor(
-      current + (target - current) * progress
+      start + (target - start) * progress
     );
 
     if (progress < 1) {
 
       element.textContent = value.toLocaleString();
 
-      requestAnimationFrame(update);
+      requestAnimationFrame(animate);
 
     } else {
 
@@ -81,7 +77,7 @@ function animateDownloads(target) {
 
   }
 
-  requestAnimationFrame(update);
+  requestAnimationFrame(animate);
 
 }
 
@@ -91,11 +87,11 @@ function animateDownloads(target) {
 
 async function loadWebsite() {
 
-  const websiteSnap = await getDoc(websiteRef);
+  const snap = await getDoc(websiteRef);
 
-  if (!websiteSnap.exists()) return;
+  if (!snap.exists()) return;
 
-  const data = websiteSnap.data();
+  const data = snap.data();
 
   document.getElementById("appName").textContent =
     data.appName;
@@ -133,11 +129,11 @@ async function loadWebsite() {
 
 async function loadAnalytics() {
 
-  const analyticsSnap = await getDoc(analyticsRef);
+  const snap = await getDoc(analyticsRef);
 
-  if (!analyticsSnap.exists()) return;
+  if (!snap.exists()) return;
 
-  const data = analyticsSnap.data();
+  const data = snap.data();
 
   animateDownloads(data.downloads);
 
